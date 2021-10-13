@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate
 
 @RestController
 class OrderController(private val restTemplate: RestTemplate) {
-    private val url = "http://127.0.0.1:8001"
+    private val url = "http://PAY-PAYMENT-SERVICE"
 
     @PostMapping("/")
     fun createPayment(@RequestBody payment: Payment) =
