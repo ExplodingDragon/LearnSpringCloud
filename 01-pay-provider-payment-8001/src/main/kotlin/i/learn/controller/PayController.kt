@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/")
 class PayController(
-    private val payService: PayService
+    private val payService: PayService,
 ) {
     @PostMapping("/")
     fun create(@RequestBody payment: Payment): CommentResult<Boolean> {

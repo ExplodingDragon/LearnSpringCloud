@@ -2,6 +2,7 @@ package i.learn.controller
 
 import i.learn.entities.CommentResult
 import i.learn.entities.Payment
+import i.learn.service.PayFeignService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 
 @RestController
-class OrderController(private val restTemplate: RestTemplate) {
+class OrderController(
+    private val restTemplate: RestTemplate,
+    private val payFeignService: PayFeignService
+) {
     private val url = "http://PAY-PAYMENT-SERVICE"
 
     @PostMapping("/")
@@ -26,6 +30,6 @@ class OrderController(private val restTemplate: RestTemplate) {
     @Suppress("UNCHECKED_CAST")
     @GetMapping("{id}")
     fun get(@PathVariable id: Long): CommentResult<List<Payment>> {
-        return restTemplate.getForObject("$url/$id", CommentResult::class.java) as CommentResult<List<Payment>>
+        return payFeignService.getId(id)
     }
 }
