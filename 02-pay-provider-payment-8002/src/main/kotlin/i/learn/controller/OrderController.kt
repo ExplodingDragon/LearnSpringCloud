@@ -14,8 +14,14 @@ class OrderController(private val restTemplate: RestTemplate) {
     private val url = "http://PAY-PAYMENT-SERVICE"
 
     @PostMapping("/")
-    fun createPayment(@RequestBody payment: Payment) =
-        restTemplate.postForObject("$url/", payment, CommentResult::class.java)
+    fun createPayment(@RequestBody payment: Payment) = kotlin.run {
+        val postForEntity = restTemplate.postForEntity("$url/", payment, CommentResult::class.java)
+        if (postForEntity.statusCode.is2xxSuccessful) {
+            postForEntity.body
+        } else {
+            CommentResult(400, "", "")
+        }
+    }
 
     @Suppress("UNCHECKED_CAST")
     @GetMapping("{id}")
