@@ -16,3 +16,7 @@ eureka:
     prefer-ip-address: true # 显示IP
     lease-renewal-interval-in-seconds: 1 # 发送心跳包间隔时间
     lease-expiration-duration-in-seconds: 2 # 销毁等待时间上限
+
+feign:
+  circuitbreaker:
+    enabled: true
