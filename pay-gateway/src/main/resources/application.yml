@@ -7,9 +7,12 @@ spring:
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
-        - id: payment_route
-          uri: http://127.0.0.1:8001
+        - id: order
+          uri: lb://pay-order-service
           predicates:
             - Path=/**
 
