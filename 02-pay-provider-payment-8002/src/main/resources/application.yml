@@ -5,11 +5,6 @@ spring:
   application:
     name: pay-order-service
 
-  datasource:
-    url: jdbc:mariadb://localhost:3306/test
-    username: test
-    password: test
-
 eureka:
   client:
     register-with-eureka: true

@@ -1,4 +1,0 @@
-CREATE TABLE `payment`(
-    id int(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `serial` VARCHAR(200) DEFAULT ''
-);
