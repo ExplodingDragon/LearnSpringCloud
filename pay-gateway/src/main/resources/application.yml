@@ -1,9 +1,17 @@
 server:
-  port: 9001
+  port: 8090
 
 spring:
   application:
-    name: pay-hystrix-dashboard
+    name: pay-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: payment_route
+          uri: http://127.0.0.1:8001
+          predicates:
+            - Path=/**
 
 eureka:
   client:
@@ -16,10 +24,3 @@ eureka:
     prefer-ip-address: true # 显示IP
     lease-renewal-interval-in-seconds: 1 # 发送心跳包间隔时间
     lease-expiration-duration-in-seconds: 2 # 销毁等待时间上限
-
-feign:
-  circuitbreaker:
-    enabled: true
-hystrix:
-  dashboard:
-    proxy-stream-allow-list: "localhost"
