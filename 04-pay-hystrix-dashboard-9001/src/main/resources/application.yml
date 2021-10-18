@@ -1,11 +1,9 @@
 server:
-  port: 8001
+  port: 9001
 
 spring:
   application:
-    name: pay-payment-service
-
-
+    name: pay-hystrix-dashboard
 
 eureka:
   client:
@@ -18,8 +16,10 @@ eureka:
     prefer-ip-address: true # 显示IP
     lease-renewal-interval-in-seconds: 1 # 发送心跳包间隔时间
     lease-expiration-duration-in-seconds: 2 # 销毁等待时间上限
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+
+feign:
+  circuitbreaker:
+    enabled: true
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
