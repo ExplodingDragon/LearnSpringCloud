@@ -21,4 +21,7 @@ class PayController(
 
     @GetMapping("error")
     fun getError() = payService.getError()
+
+    @GetMapping("pay/{money}")
+    fun pay(@PathVariable money: Long) = payService.pay(money)
 }
